@@ -1,0 +1,37 @@
+name: 🐛 Relato de Bug / Tarefa
+description: Abra uma solicitação padronizada para nossa equipe (ou para o Agente de IA!)
+title: "[Bug]: "
+labels: ["triagem-pendente"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por colaborar na nossa oficina! Preencha os campos abaixo.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Qual área do projeto foi afetada?
+      options:
+        - Frontend (Interface)
+        - Backend (API)
+        - Documentação
+    validations:
+      required: true
+
+  - type: textarea
+    id: descricao
+    attributes:
+      label: O que precisa ser feito ou corrigido?
+      description: Seja claro. Se o @copilot for resolver isso, ele lerá esta descrição!
+      placeholder: "Ex: O botão de login não valida se o e-mail possui '@' antes de enviar."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: termos
+    attributes:
+      label: Verificação rápida
+      options:
+        - label: Já procurei nas Issues abertas se alguém não reportou isso antes.
+          required: true

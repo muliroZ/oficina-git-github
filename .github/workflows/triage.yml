@@ -1,0 +1,42 @@
+name: 🤖 Triagem Automática de Issues
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  triagem:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Saudar participante e aplicar labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body || "";
+            const issue_number = context.payload.issue.number;
+            const author = context.payload.issue.user.login;
+
+            // 1. Descobrir qual área foi selecionada no Issue Form
+            let novaLabel = "geral";
+            if (body.includes("Frontend")) novaLabel = "🎨 frontend";
+            if (body.includes("Backend")) novaLabel = "⚙️ backend";
+            if (body.includes("Documentação")) novaLabel = "📚 docs";
+
+            // 2. Adicionar a label correspondente
+            await github.rest.issues.addLabels({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issue_number,
+            labels: [novaLabel]
+            });
+
+            // 3. Postar comentário automático de boas-vindas
+            await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issue_number,
+            body: `Olá @${author}! 👋 Recebemos sua Issue e já classificamos automaticamente como **${novaLabel}**.`
+            });
