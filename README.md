@@ -4,6 +4,8 @@ Repositório da oficina **Git & GitHub: versionamento, colaboração e boas prá
 
 Aqui não há uma aplicação: o "código" do repositório é a pasta [`.github/`](.github), que reúne os recursos do GitHub apresentados na segunda metade da oficina. Este README explica cada um deles para você entender o que acontece quando interage com o repositório e conseguir reproduzir a ideia nos seus próprios projetos.
 
+> Observação: Os slides da oficina não são renderizados no GitHub, então você deve baixá-los e visualizá-los em seus documentos
+
 ## Sumário
 
 - [Mão na massa: Caça aos Bots](#mão-na-massa-caça-aos-bots)
